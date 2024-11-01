@@ -1,0 +1,497 @@
+/**
+  Copyright (C) <2015>  Myjive Inc. <info@myjive.com>
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+*/
+
+@font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.eot?27301486');
+    src: url('../font/fontello.eot?27301486#iefix') format('embedded-opentype'),
+        url('../font/fontello.woff?27301486') format('woff'),
+        url('../font/fontello.ttf?27301486') format('truetype'),
+        url('../font/fontello.svg?27301486#fontello') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.svg?27301486#fontello') format('svg');
+  }
+}
+*/
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+    font-family: "fontello";
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    /* opacity: .8; */
+
+    /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    text-transform: none;
+
+    /* fix buttons height, for twitter bootstrap */
+    line-height: 1em;
+
+    /* Animation center compensation - margins should be symmetric */
+    /* remove if not needed */
+    margin-left: .2em;
+
+    /* you can be more comfortable with increased icons size */
+    /* font-size: 120%; */
+
+    /* Font smoothing. That was taken from TWBS */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Uncomment for 3D effect */
+    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+/*
+   Animation example, for spinners
+*/
+.animate-spin {
+    -moz-animation: spin 2s infinite linear;
+    -o-animation: spin 2s infinite linear;
+    -webkit-animation: spin 2s infinite linear;
+    animation: spin 2s infinite linear;
+    display: inline-block;
+}
+@-moz-keyframes spin {
+    0% {
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(359deg);
+        -o-transform: rotate(359deg);
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@-webkit-keyframes spin {
+    0% {
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(359deg);
+        -o-transform: rotate(359deg);
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@-o-keyframes spin {
+    0% {
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(359deg);
+        -o-transform: rotate(359deg);
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@-ms-keyframes spin {
+    0% {
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(359deg);
+        -o-transform: rotate(359deg);
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes spin {
+    0% {
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(359deg);
+        -o-transform: rotate(359deg);
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+.icon-cubes:before { content: '\e800'; } /* 'î ' */
+.icon-spin:before { content: '\e801'; } /* 'î ' */
+.icon-youtube:before { content: '\e802'; } /* 'î ' */
+.icon-twitter:before { content: '\e803'; } /* 'î ' */
+.icon-facebook:before { content: '\e804'; } /* 'î ' */
+.icon-active:before { content: '\e805'; } /* 'î ' */
+.icon-inactive:before { content: '\e806'; } /* 'î ' */
+.icon-menu:before { content: '\e807'; } /* 'î ' */
+.icon-cog:before { content: '\e808'; } /* 'î ' */
+.icon-circle:before { content: '\e809'; } /* 'î ' */
+.icon-ok-circled:before { content: '\e80a'; } /* 'î ' */
+.icon-search:before { content: '\e80b'; } /* 'î ' */
+.icon-timeline:before { content: '\e80c'; } /* 'î ' */
+.icon-arrows-cw:before { content: '\e80d'; } /* 'î ' */
+.icon-playlist:before { content: '\e80e'; } /* 'î ' */
+.icon-channel:before { content: '\e80f'; } /* 'î ' */
+.icon-eraser:before { content: '\e810'; } /* 'î ' */
+.icon-help-circled:before { content: '\e811'; } /* 'î ' */
+.icon-instagram:before { content: '\e812'; } /* 'î ' */
+.icon-cancel-circled:before { content: '\e813'; } /* 'î ' */
+
+body, html {
+    background-color: #FFFFFF;
+}
+
+.wrap {
+    position: relative;
+    width: 98%;
+}
+
+.wrap .plugin-title {
+    display: block;
+    background-image: url('images/logo.png');
+    background-size: 72px 72px;
+    background-repeat: no-repeat;
+    padding-left: 85px;
+    font-size: 2em;
+    font-weight: 500;
+    min-height: 72px;
+    line-height: 72px;
+    margin-left: 15px;
+}
+
+/* Social item */
+.social-menu-container {
+    margin-top: 4%;
+    overflow: hidden;
+}
+
+.panel-default > .panel-heading {
+    padding: 10px 15px;
+}
+
+.panel-title {
+    font-size: 1.2em;
+    line-height: 1.5em;
+    position: relative;
+}
+
+.panel-title i {
+    font-size: 1.5em;
+    margin-right: 5px;
+}
+
+.panel-title a {
+    text-decoration: none;
+    outline: none;
+    box-shadow: none;
+    display: block;
+    width: 100%;
+}
+
+.panel-body {
+    position: relative;
+    overflow: hidden;
+}
+
+.social-status {
+    position:absolute; 
+    top: 3px; 
+    right: 0; 
+    font-weight: bold;
+}
+
+.input-group {
+    margin-top: 10px;
+    overflow-x: hidden;
+}
+
+.input-group:first-of-type {
+    margin-top: 0;
+}
+
+.input-group-lg > .form-control, 
+.input-group-lg > .input-group-addon, 
+.input-group-lg > .input-group-btn > .btn {
+    border-radius: 0;
+}
+
+.btn-group {
+    margin: 25px auto 10px;
+    width: 80%;
+}
+
+.text-success {
+    color: #8BC236;
+}
+
+.dropdown-menu > li > a {
+    font-size: 1.2em;
+}
+
+.dropdown-menu li {
+    margin-bottom: 0
+}
+
+.twitter-color {
+    color: #00aced !important;
+}
+
+.facebook-color {
+    color: #3b5998 !important;
+}
+
+.youtube-color {
+    color: #bb0000 !important;
+}
+
+.instagram-color {
+    color: #517fa4 !important;
+}
+
+.setting-color {
+    color: #ECAC01 !important;
+}
+
+select.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+legend {
+    color: #666666;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+.panel-body fieldset {
+    margin-top: 15px;
+}
+
+.panel-body fieldset:first-of-type {
+    margin-top: 0;
+}
+
+/* Notification */
+.myjive-notification h1 {
+    font-weight: 700;
+}
+
+.myjive-notification {
+    width: 95%;
+    border-left: 3px solid #F04748;
+    background-color: #F04748;
+    padding: 10px;
+    color: #FFFFFF;
+    position: relative;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.myjive-notification-icon {
+    float: left;
+    width: 114px;
+    height: 114px;
+    background: transparent url('images/logo.png') no-repeat center;
+    background-size: 100% 100%;
+}
+
+.myjive-notification-content {
+    float: left;
+    padding-left: 15px;
+}
+
+.myjive-notification:after {
+    content: ' ';
+    display: block;
+    clear:both;
+}
+
+.myjive-error-list li {
+    font-size: 1.1em;
+}
+
+.myjive-verification-status {
+    position:absolute; 
+    top:0; 
+    left:0;
+    width:100%; 
+    height:100%; 
+    background-color:rgba(244, 244, 244, 0.8); 
+    z-index:9999;
+}
+
+.myjive-ok {
+    display:table; 
+    width: 100%; 
+    height:100%; 
+    font-size: 8em; 
+    color:rgba(139,194,54, 0.4)
+}
+
+.myjive-ok i {
+    display:table-cell; 
+    vertical-align:middle; 
+    text-align:center;
+}
+
+.myjive-error {
+    display:table; 
+    width: 100%; 
+    height:100%; 
+    font-size: 8em; 
+    color: rgba(217, 83, 79, 0.4);
+}
+
+.myjive-error i {
+    display: block;
+    margin-top: 5%;
+    text-align: center;
+}
+
+.myjive-error span {
+    display: block;
+    font-size: 0.3em;
+    text-align: center;
+}
+
+.myjive-close-thin {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    color: rgba(217, 83, 79, 0.4);
+    font: 3em/100% arial, sans-serif;
+    position: absolute;
+    text-shadow: 0 1px 0 #fff;
+}
+
+.myjive-close-thin:after {
+    content: '✖';
+    cursor: pointer
+}
+
+.myjive-help-addon {
+    cursor: pointer;
+    border-radius: 0;
+}
+
+.myjive-help-addon:hover i {
+    color: #337ab7;
+}
+
+.myjive-help-addon.active {
+    color: #337ab7;
+}
+
+.myjive-help-container {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    z-index: 1000;
+    padding: 10px;
+    width: 100%;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+    -webkit-transition-delay: 0.5s;
+    -moz-transition-delay: 0.5s;
+    -o-transition-delay: 0.5s;
+    transition-delay: 0.5s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.myjive-help-container h3 {
+    margin-top: 0px;
+    line-height: 1.3em;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.myjive-help-container.closing {
+    position: relative;
+    opacity: 0;
+    top: -100%;
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+
+.myjive-help-container.open {
+    position: relative;
+    top: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+.myjive-meter{
+    z-index: 1001;
+    position: absolute;
+    height: 5px;
+    background-color: rgb(139, 194, 54);
+    width: 0;
+    right: 0;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.myjive-meter-change{
+    width: 100%;
+}
+
+.myjive-meter-close{
+    -webkit-transition-delay: 0.5s;
+    -moz-transition-delay: 0.5s;
+    -o-transition-delay: 0.5s;
+    transition-delay: 0.5s;
+}
+
+.myjive-overflow{
+    overflow: hidden;
+}

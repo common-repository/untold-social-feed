@@ -1,0 +1,569 @@
+<div class="wrap">
+    <?php if (Myjive\Core\Notification::getInstance()->count()) { ?>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="myjive-notification">
+                    <div class="myjive-notification-icon"></div>
+                    <div class="myjive-notification-content">
+                        <h1>Important Notification</h1>
+                        <ul class="myjive-error-list">
+                            <?php foreach (Myjive\Core\Notification::getInstance()->getList() as $notification) { ?>
+                                <li><?php echo $notification->message; ?></li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+
+    <div class="row social-menu-container">
+        <div class="col-xs-12 col-md-6 col-md-offset-3">
+            <div class="panel-group" id="myjive-sections" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="twitter-header">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#myjive-sections" href="#twitter" aria-expanded="true" aria-controls="twitter">
+                                <i class="icon-twitter twitter-color"></i> Twitter
+                            </a>
+                            <span class="social-status" id="twitter-indicator"><?php echo ($this->getOption('Twitter.active') ? '<i class="text-success icon-active"></i>' : '<i class="text-muted icon-inactive"></i>'); ?></span>
+                        </h4>
+                    </div>
+                    <div id="twitter" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="twitter-header">
+                        <div class="panel-body">
+                            <div class="input-group input-group-lg" id="twitter-token-container">
+                                <span class="input-group-addon" id="twitter-token"><i class="<?php echo ($this->getOption('Twitter.accessToken') ? 'text-success icon-ok-circled' : 'icon-circle'); ?>"></i></span>
+                                <input type="text" class="form-control" name="accessToken" value="<?php echo $this->getOption('Twitter.accessToken'); ?>" data-group="Twitter" placeholder="<?php echo __('Access Token', MYJIVE_KEY); ?>" aria-describedby="twitter-token" />
+                                <span class="input-group-addon myjive-help-addon" data-target="twitter-token-help">
+                                    <i class="icon-help-circled"></i>
+                                </span>
+                                <div class="myjive-meter myjive-meter-close"></div>
+                            </div>
+                            <div class="myjive-overflow">
+                                <div class="myjive-help-container" id="twitter-token-help">
+                                    <h3><?php echo __('Access Token', MYJIVE_KEY); ?></h3>
+                                    <ol class="text-justify">
+                                        <li><?php echo sprintf(__('Visit %s and enter your existing Twitter account information.', MYJIVE_KEY), '<a href="https://apps.twitter.com/">' . __('Twitter Apps', MYJIVE_KEY) . '</a>'); ?></li>
+                                        <li><?php echo __('Create a new app, or select an existing app.', MYJIVE_KEY); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Navigate to [Keys and Access Tokens] - it is a tab just below your app\'s name.', MYJIVE_KEY), 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Select [Create Access Token] at the bottom of page (you may have to scroll).', MYJIVE_KEY), 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Copy the generated [access token] and paste it into the corresponding box in this form. It will be a series of seemingly nonsensical characters. We need them all!', MYJIVE_KEY), 'b'); ?></li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon" id="twitter-token-secret"><i class="<?php echo ($this->getOption('Twitter.accessTokenSecret') ? 'text-success icon-ok-circled' : 'icon-circle'); ?>"></i></span>
+                                <input type="text" class="form-control" name="accessTokenSecret" value="<?php echo $this->getOption('Twitter.accessTokenSecret'); ?>" data-group="Twitter" placeholder="<?php echo __('Access Token Secret', MYJIVE_KEY); ?>" aria-describedby="twitter-token-secret" />
+                                <span class="input-group-addon myjive-help-addon" data-target="twitter-token-secret-help">
+                                    <i class="icon-help-circled"></i>
+                                </span>
+                                <div class="myjive-meter myjive-meter-close"></div>
+                            </div>
+                            <div class="myjive-overflow">
+                                <div class="myjive-help-container" id="twitter-token-secret-help">
+                                    <h3><?php echo __('Access Token Secret', MYJIVE_KEY); ?></h3>
+                                    <ol class="text-justify">
+                                        <li><?php echo sprintf(__('Visit %s and enter your existing Twitter account information', MYJIVE_KEY), '<a href="https://apps.twitter.com/">' . __('Twitter Apps', MYJIVE_KEY) . '</a>'); ?>;</li>
+                                        <li><?php echo $this->preparePhrase(__('Select the app you have just created (or used) for the [Access Token].', MYJIVE_KEY), 'b'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Navigate to [Keys and Access Tokens]-- it is a tab just below your app\'s name.', MYJIVE_KEY), 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Select [Create Access Token] at the bottom of page (you may have to scroll)', MYJIVE_KEY), 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Copy the generated [access token secret] and paste it into the corresponding box in this form. It will be a series of seemingly nonsensical characters. We need them all!', MYJIVE_KEY), 'b'); ?></li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon" id="twitter-consumer-key"><i class="<?php echo ($this->getOption('Twitter.consumerKey') ? 'text-success icon-ok-circled' : 'icon-circle'); ?>"></i></span>
+                                <input type="text" class="form-control" name="consumerKey" value="<?php echo $this->getOption('Twitter.consumerKey'); ?>" data-group="Twitter" placeholder="<?php echo __('Consumer Key (API Key)', MYJIVE_KEY); ?>" aria-describedby="twitter-consumer-key" />
+                                <span class="input-group-addon myjive-help-addon" data-target="twitter-consumer-key-help">
+                                    <i class="icon-help-circled"></i>
+                                </span>
+                                <div class="myjive-meter myjive-meter-close"></div>
+                            </div>
+                            <div class="myjive-overflow">
+                                <div class="myjive-help-container" id="twitter-consumer-key-help">
+                                    <h3><?php echo __('Consumer Key (API Key)', MYJIVE_KEY); ?></h3>
+                                    <ol class="text-justify">
+                                        <li><?php echo sprintf(__('Visit %s and enter your existing Twitter account information', MYJIVE_KEY), '<a href="https://apps.twitter.com/">' . __('Twitter Apps', MYJIVE_KEY) . '</a>'); ?>;</li>
+                                        <li><?php echo $this->preparePhrase(__('Select the app you have just created (or used) for the [access token/access token secret].', MYJIVE_KEY), 'b'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Navigate to [Keys and Access Tokens]-- it is a tab just below your app\'s name.', MYJIVE_KEY), 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Find the [Application Settings] section', MYJIVE_KEY), 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Copy your [consumer key] and paste it into the corresponding box in this form. It will be a series of seemingly nonsensical characters. We need them all!', MYJIVE_KEY), 'b'); ?></li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon" id="twitter-consumer-secret"><i class="<?php echo ($this->getOption('Twitter.consumerSecret') ? 'text-success icon-ok-circled' : 'icon-circle'); ?>"></i></span>
+                                <input type="text" class="form-control" name="consumerSecret" value="<?php echo $this->getOption('Twitter.consumerSecret'); ?>" data-group="Twitter" placeholder="<?php echo __('Consumer Secret (API Secret)', MYJIVE_KEY); ?>" aria-describedby="twitter-consumer-secret" />
+                                <span class="input-group-addon myjive-help-addon" data-target="twitter-consumer-secret-help">
+                                    <i class="icon-help-circled"></i>
+                                </span>
+                                <div class="myjive-meter myjive-meter-close"></div>
+                            </div>
+                            <div class="myjive-overflow">
+                                <div class="myjive-help-container" id="twitter-consumer-secret-help">
+                                    <h3><?php echo __('Consumer Secret (API Secret)', MYJIVE_KEY); ?></h3>
+                                    <ol class="text-justify">
+                                        <li><?php echo sprintf(__('Visit %s and enter your existing Twitter account information.', MYJIVE_KEY), '<a href="https://apps.twitter.com/">' . __('Twitter Apps', MYJIVE_KEY) . '</a>'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Select the app you have just created (or used) for the [access token/access token secret].', MYJIVE_KEY), 'b'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Navigate to [Keys and Access Tokens]-- it is a tab just below your app\'s name.', MYJIVE_KEY), 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Find the [Application Settings] section.', MYJIVE_KEY), 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Copy your [consumer secret] and paste it into the corresponding box in this form. It will be a series of seemingly nonsensical characters. We need them all!', MYJIVE_KEY), 'b'); ?></li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="input-group input-group-lg">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" id="twitter-query-type" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="<?php echo ($this->getOption('Twitter.query') ? 'text-success icon-' . $this->getOption('Twitter.queryType') : 'icon-menu'); ?>"></i></button>
+                                    <ul class="dropdown-menu" id="twitter-query-type-list">
+                                        <li><a href="#" data-query-type="search" aria-describedby="twitter-query-type"><i class="icon-search"></i> Search Query</a></li>
+                                        <li><a href="#" data-query-type="timeline" aria-describedby="twitter-query-type"><i class="icon-timeline"></i> User Timeline</a></li>
+                                    </ul>
+                                </div>
+                                <input type="text" class="form-control" name="query" id="twitter-query" value="<?php echo $this->getOption('Twitter.query'); ?>" data-group="Twitter" placeholder="<?php echo __('Fetch Twitts By:', MYJIVE_KEY); ?>" />
+                                <span class="input-group-addon myjive-help-addon" data-target="twitter-query-help">
+                                    <i class="icon-help-circled"></i>
+                                </span>
+                                <div class="myjive-meter myjive-meter-close"></div>
+                            </div>
+                            <div class="myjive-overflow">
+                                <div class="myjive-help-container" id="twitter-query-help">
+                                    <h3><?php echo __('Fetch Query', MYJIVE_KEY); ?></h3>
+                                    <p class="text-justify"><?php echo __('This box has two options. You may choose one or the other, but not both', MYJIVE_KEY); ?></p>
+                                    <ol class="text-justify">
+                                        <li><?php echo __('Search Query', MYJIVE_KEY); ?></li>
+                                        <ul>
+                                            <li><?php echo __(' - This is like typing into a Twitter search box', MYJIVE_KEY); ?></li>
+                                            <li><?php echo __(' - Consider using hashtags for more specific results', MYJIVE_KEY); ?></li>
+                                        </ul>
+                                        <li><?php echo __('User Timeline', MYJIVE_KEY); ?></li>
+                                        <ul>
+                                            <li><?php echo __(' - Enter the Twitter handle you want to return results for here <i>without</i> the @ symbol', MYJIVE_KEY); ?></li>
+                                            <li><?php echo __(' - Usually, this will be your Twitter handle. But we will never tell you what to do ;)', MYJIVE_KEY); ?></li>
+                                            <li><?php echo sprintf(__(' - Example: %s would actually just be Myjive', MYJIVE_KEY), '<a href="https://twitter.com/Myjive">@Myjive</a>'); ?></li>
+                                        </ul>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="btn-group btn-group-justified" role="group">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn <?php echo ($this->getOption('Twitter.active') ? 'btn-warning' : 'btn-success'); ?> toggle-status" data-group="Twitter" aria-describedby="twitter-indicator"><?php echo ($this->getOption('Twitter.active') ? '<i class="icon-inactive"></i> ' . __('Deactivate', MYJIVE_KEY) : '<i class="icon-active"></i> ' . __('Activate', MYJIVE_KEY)); ?></button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-info validate-source" data-source="Twitter"><i class="icon-arrows-cw"></i>  <?php echo __('Verify', MYJIVE_KEY); ?></button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-danger clear-cache" data-group="Twitter"><i class="icon-eraser"></i> <?php echo __('Clear Cache', MYJIVE_KEY); ?></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="facebook-header">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#myjive-sections" href="#facebook" aria-expanded="false" aria-controls="facebook">
+                                <i class="icon-facebook facebook-color"></i> Facebook
+                            </a>
+                            <span class="social-status" id="facebook-indicator"><?php echo ($this->getOption('Facebook.active') ? '<i class="text-success icon-active"></i>' : '<i class="text-muted icon-inactive"></i>'); ?></span>
+                        </h4>
+                    </div>
+                    <div id="facebook" class="panel-collapse collapse" role="tabpanel" aria-labelledby="facebook-header">
+                        <div class="panel-body">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon" id="facebook-app-id"><i class="<?php echo ($this->getOption('Facebook.appID') ? 'text-success icon-ok-circled' : 'icon-circle'); ?>"></i></span>
+                                <input type="text" class="form-control" name="appID" value="<?php echo $this->getOption('Facebook.appID'); ?>" data-group="Facebook" placeholder="<?php echo __('App ID', MYJIVE_KEY); ?>" aria-describedby="facebook-app-id" />
+                                <span class="input-group-addon myjive-help-addon" data-target="facebook-app-id-help">
+                                    <i class="icon-help-circled"></i>
+                                </span>
+                                <div class="myjive-meter myjive-meter-close"></div>
+                            </div>
+                            <div class="myjive-overflow">
+                                <div class="myjive-help-container" id="facebook-app-id-help">
+                                    <h3><?php echo __('App ID', MYJIVE_KEY); ?></h3>
+                                    <ol class="text-justify">
+                                        <li><?php echo sprintf(__('Visit the %s and enter your existing Facebook account information', MYJIVE_KEY), '<a href="https://developers.facebook.com/apps">' . __('Facebook App Dashboard', MYJIVE_KEY) . '</a>'); ?></li>
+                                        <li><?php echo __('Create a new app, or select an existing app', MYJIVE_KEY); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Your [App ID] will be located just below your app\'s name. Copy it, then paste it into this form', MYJIVE_KEY), 'b'); ?></li>
+                                        <li><?php echo __('Keep that page open! You will need it to finish filling out this form', MYJIVE_KEY); ?></li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon" id="facebook-app-secret"><i class="<?php echo ($this->getOption('Facebook.appSecret') ? 'text-success icon-ok-circled' : 'icon-circle'); ?>"></i></span>
+                                <input type="text" class="form-control" name="appSecret" value="<?php echo $this->getOption('Facebook.appSecret'); ?>" data-group="Facebook" placeholder="<?php echo __('App Secret', MYJIVE_KEY); ?>" aria-describedby="facebook-app-secret" />
+                                <span class="input-group-addon myjive-help-addon" data-target="facebook-app-secret-help">
+                                    <i class="icon-help-circled"></i>
+                                </span>
+                                <div class="myjive-meter myjive-meter-close"></div>
+                            </div>
+                            <div class="myjive-overflow">
+                                <div class="myjive-help-container" id="facebook-app-secret-help">
+                                    <h3><?php echo __('App Secret', MYJIVE_KEY); ?></h3>
+                                    <ol class="text-justify">
+                                        <li><?php echo sprintf(__('Visit the %s and enter your existing Facebook account information', MYJIVE_KEY), '<a href="https://developers.facebook.com/apps">' . __('Facebook App Dashboard', MYJIVE_KEY) . '</a>'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Select the app you have just created (or used) for your [App ID].', MYJIVE_KEY), 'b'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Your [App Secret] will be located just below your app\'s name, toward the right side of the screen. It is hidden.', MYJIVE_KEY), 'b'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Click the [Show] button.', MYJIVE_KEY), 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Magic! Now you can see your [App Secret]. Copy it, then paste it into this form.', MYJIVE_KEY), 'b'); ?></li>
+                                        <li><?php echo __('Keep that page open! You will need it to finish filling out this form.', MYJIVE_KEY); ?></li>
+                                    </ol> 
+                                </div>
+                            </div>
+
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon" id="facebook-access-token"><i class="<?php echo ($this->getOption('Facebook.accessToken') ? 'text-success icon-ok-circled' : 'icon-circle'); ?>"></i></span>
+                                <input type="text" class="form-control" name="accessToken" value="<?php echo $this->getOption('Facebook.accessToken'); ?>" data-group="Facebook" placeholder="<?php echo __('User Token', MYJIVE_KEY); ?>" aria-describedby="facebook-access-token" />
+                                <span class="input-group-addon myjive-help-addon" data-target="facebook-access-token-help">
+                                    <i class="icon-help-circled"></i>
+                                </span>
+                                <div class="myjive-meter myjive-meter-close"></div>
+                            </div>
+                            <div class="myjive-overflow">
+                                <div class="myjive-help-container" id="facebook-access-token-help">
+                                    <h3><?php echo __('User Token', MYJIVE_KEY); ?></h3>
+                                    <ol class="text-justify">
+                                        <li><?php echo sprintf(__('Visit the %s and enter your existing Facebook account information.', MYJIVE_KEY), '<a href="https://developers.facebook.com/apps">' . __('Facebook App Dashboard', MYJIVE_KEY) . '</a>'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Select the app you have just created (or used) for your [App ID / App Secret].', MYJIVE_KEY), 'b'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Under [Tools & Support] in the navigation bar, select [Access Token Tool].', MYJIVE_KEY), 'i', 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Find your [User Token]. Copy, then paste those characters into this form.', MYJIVE_KEY), 'b'); ?></li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon" id="facebook-id"><i class="<?php echo ($this->getOption('Facebook.ID') ? 'text-success icon-ok-circled' : 'icon-circle'); ?>"></i></span>
+                                <input type="text" class="form-control" name="ID" value="<?php echo $this->getOption('Facebook.ID'); ?>" data-group="Facebook" placeholder="<?php echo __('Page or Profile ID', MYJIVE_KEY); ?>" aria-describedby="facebook-id" />
+                                <span class="input-group-addon myjive-help-addon" data-target="facebook-id-help">
+                                    <i class="icon-help-circled"></i>
+                                </span>
+                                <div class="myjive-meter myjive-meter-close"></div>
+                            </div>
+                            <div class="myjive-overflow">
+                                <div class="myjive-help-container" id="facebook-id-help">
+                                    <h3><?php echo __('Page or Profile ID', MYJIVE_KEY); ?></h3>
+                                    <ol class="text-justify">
+                                        <li><?php echo sprintf(__('To find your Facebook ID, click %s and enter the corresponding Facebook URL in the text box.', MYJIVE_KEY), '<a href="findmyfbid.com/">' . __('here', MYJIVE_KEY) . '</a>'); ?></li>
+                                        <li><?php echo __('This tool will automatically search for your Facebook ID.', MYJIVE_KEY); ?></li>
+                                        <li><?php echo __('When the numerical ID is returned, copy it. Then paste the numbers into this form.', MYJIVE_KEY); ?></li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="btn-group btn-group-justified" role="group">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn <?php echo ($this->getOption('Facebook.active') ? 'btn-warning' : 'btn-success'); ?> toggle-status" data-group="Facebook" aria-describedby="facebook-indicator"><?php echo ($this->getOption('Facebook.active') ? '<i class="icon-inactive"></i> ' . __('Deactivate', MYJIVE_KEY) : '<i class="icon-active"></i> ' . __('Activate', MYJIVE_KEY)); ?></button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-info validate-source" data-source="Facebook"><i class="icon-arrows-cw"></i>  <?php echo __('Verify', MYJIVE_KEY); ?></button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-danger clear-cache" data-group="Facebook"><i class="icon-eraser"></i> <?php echo __('Clear Cache', MYJIVE_KEY); ?></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="youtube-header">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#myjive-sections" href="#youtube" aria-expanded="false" aria-controls="youtube">
+                                <i class="icon-youtube youtube-color"></i> Youtube
+                            </a>
+                            <span class="social-status" id="youtube-indicator"><?php echo ($this->getOption('Youtube.active') ? '<i class="text-success icon-active"></i>' : '<i class="text-muted icon-inactive"></i>'); ?></span>
+                        </h4>
+                    </div>
+                    <div id="youtube" class="panel-collapse collapse" role="tabpanel" aria-labelledby="youtube-header">
+                        <div class="panel-body">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon" id="youtube-app-key"><i class="<?php echo ($this->getOption('Youtube.appKey') ? 'text-success icon-ok-circled' : 'icon-circle'); ?>"></i></span>
+                                <input type="text" class="form-control" name="appKey" value="<?php echo $this->getOption('Youtube.appKey'); ?>" data-group="Youtube" placeholder="<?php echo __('API Key', MYJIVE_KEY); ?>" aria-describedby="youtube-app-key" />
+                                <span class="input-group-addon myjive-help-addon" data-target="youtube-app-key-help">
+                                    <i class="icon-help-circled"></i>
+                                </span>
+                                <div class="myjive-meter myjive-meter-close"></div>
+                            </div>
+                            <div class="myjive-overflow">
+                                <div class="myjive-help-container" id="youtube-app-key-help">
+                                    <h3><?php echo __('API Key', MYJIVE_KEY); ?></h3>
+                                    <ol class="text-justify">
+                                        <li><?php echo sprintf(__('Visit the %s and enter your existing YouTube (Google) account information.', MYJIVE_KEY), '<a href="https://console.developers.google.com/">' . __('Google Developers Console', MYJIVE_KEY) . '</a>'); ?></li>
+                                        <li><?php echo __('Select a project, or create a new one.', MYJIVE_KEY); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Locate the sidebar on the left side of your screen. Now expand [APIs & auth].', MYJIVE_KEY), 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Click [APIs].', MYJIVE_KEY), 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('You will be looking at two columns. Find the section titled [YouTube APIs], and click [YouTube Data API].', MYJIVE_KEY), 'i', 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('At the top of that window, you will see a button that says [Enable Data API]. Click it. If it already says [Disable API], leave it as is.', MYJIVE_KEY), 'i', 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Go back to the sidebar on the left side of your screen, and click [Credentials]. It will be under the already expanded [APIs & auth] section.', MYJIVE_KEY), 'i', 'i'); ?></li>    
+                                        <li><?php echo $this->preparePhrase(__('If this is a new app, or credentials have not been added to your existing app, this window will prompt you to [add credentials]. If you already have a [browser key] created, skip to step 11.', MYJIVE_KEY), 'i', 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Click the blue [Add Credentials] button, and select [API key].', MYJIVE_KEY), 'i', 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('It will to ask you want kind of key you would like to create. We want the [browser key] option. Give it a good name! You worked hard for it.', MYJIVE_KEY), 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Your new [API key] will be present itself in a pop up. Copy the string of characters, then paste it into this form.', MYJIVE_KEY), 'b'); ?></li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="input-group input-group-lg">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" id="youtube-query-type" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="<?php echo ($this->getOption('Youtube.query') ? 'text-success icon-' . $this->getOption('Youtube.queryType') : 'icon-menu'); ?>"></i></button>
+                                    <ul class="dropdown-menu" id="youtube-query-type-list">
+                                        <li><a href="#" data-query-type="playlist" aria-describedby="youtube-query-type"><i class="icon-playlist"></i> <?php echo __('Playlist', MYJIVE_KEY); ?></a></li>
+                                        <li><a href="#" data-query-type="channel" aria-describedby="youtube-query-type"><i class="icon-channel"></i> <?php echo __('Channel', MYJIVE_KEY); ?></a></li>
+                                    </ul>
+                                </div>
+                                <input type="text" class="form-control" name="query" id="youtube-query" value="<?php echo $this->getOption('Youtube.query'); ?>" data-group="Youtube" placeholder="<?php echo __('Fetch Videos By', MYJIVE_KEY); ?>" />
+                                <span class="input-group-addon myjive-help-addon" data-target="youtube-query-help">
+                                    <i class="icon-help-circled"></i>
+                                </span>
+                                <div class="myjive-meter myjive-meter-close"></div>
+                            </div>
+                            <div class="myjive-overflow">
+                                <div class="myjive-help-container" id="youtube-query-help">
+                                    <h3><?php echo __('Fetch Query', MYJIVE_KEY); ?></h3>
+                                    <p class="text-justify"><?php echo $this->preparePhrase(__('This box has two options. You may choose one or the other, but not both. Now that we are connected with the [API key], you can add whatever channel or playlist suits your fancy!', MYJIVE_KEY), 'i'); ?></p>
+                                    <ul class="text-justify">
+                                        <li><?php echo __('Playlist', MYJIVE_KEY); ?></li>
+                                        <ol>
+                                            <li><?php echo sprintf(__('Visit %s', MYJIVE_KEY), '<a href="http://youtube.com">' . __('YouTube', MYJIVE_KEY) . '</a>'); ?></li>
+                                            <li><?php echo __('Search for the playlist you would like to upload.', MYJIVE_KEY); ?></li>
+                                            <ul>
+                                                <li><?php echo $this->preparePhrase(__(' - if you need help sifting through the results, you can use the [filter] feature found just\' under the search bar.', MYJIVE_KEY), 'i'); ?></li>
+                                                <li><?php echo __(' - under type, select playlist. Now you only get playlist results.', MYJIVE_KEY); ?></li>
+                                            </ul>
+                                            <li><?php echo __('Select your desired playlist.', MYJIVE_KEY); ?></li>
+                                            <li><?php echo $this->preparePhrase(__('Now, look at your URL. You should see something like https://www.youtube.com/watch?v=vmxHMzjztlM&list=[PL45cQusAX8NTQ2FmzucsSfqynzfHFi7pj]. The bolded characters are your playlist ID. Copy them alone, then paste into this form.', MYJIVE_KEY), 'b'); ?></li>
+                                            <li><?php echo sprintf(__('You can create playlists within your YouTube account. For more information, click %s.', MYJIVE_KEY), '<a href="https://support.google.com/youtube/answer/57792?hl=en">' . __('here', MYJIVE_KEY) . '</a>'); ?></li>
+                                        </ol>
+                                        <li><?php echo __('Channel', MYJIVE_KEY); ?></li>
+                                        <ol>
+                                            <li><?php echo sprintf(__('Visit %s.', MYJIVE_KEY), '<a href="http://youtube.com">' . __('YouTube', MYJIVE_KEY) . '</a>'); ?></li>
+                                            <li><?php echo __('Search for the channel you would like to upload.', MYJIVE_KEY); ?></li>
+                                            <ul>
+                                                <li><?php echo $this->preparePhrase(__(' - if you need help sifting through the results, you can use the [filter] feature found just under the search bar.', MYJIVE_KEY), 'i'); ?></li>
+                                                <li><?php echo __(' - under type, select channel. Now you only get channel results', MYJIVE_KEY); ?></li>
+                                            </ul>
+                                            <li><?php echo __('Select your desired channel.', MYJIVE_KEY); ?></li>
+                                            <li><?php echo $this->preparePhrase(__('Now, look at your URL. You should see something like https://www.youtube.com/channel/[UCriCPWEuBymgkaSO5xcEoow]. The bolded characters are your channel ID (no \'/\'). Copy them alone, then paste into this form.', MYJIVE_KEY), 'b'); ?></li>
+                                            <li><?php echo sprintf(__('A YouTube Channel is a single space for you to organize video content for your audience. For help creating one, click %s.', MYJIVE_KEY), '<a href="https://support.google.com/youtube/answer/1646861?hl=en">' . __('here', MYJIVE_KEY) . '</a>'); ?></li>
+                                        </ol>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="btn-group btn-group-justified" role="group">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn <?php echo ($this->getOption('Youtube.active') ? 'btn-warning' : 'btn-success'); ?> toggle-status" data-group="Youtube" aria-describedby="youtube-indicator"><?php echo ($this->getOption('Youtube.active') ? '<i class="icon-inactive"></i> ' . __('Deactivate', MYJIVE_KEY) : '<i class="icon-active"></i> ' . __('Activate', MYJIVE_KEY)); ?></button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-info validate-source" data-source="Youtube"><i class="icon-arrows-cw"></i>  <?php echo __('Verify', MYJIVE_KEY); ?></button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-danger clear-cache" data-group="Youtube"><i class="icon-eraser"></i> <?php echo __('Clear Cache', MYJIVE_KEY); ?></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="instagram-header">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#myjive-sections" href="#instagram" aria-expanded="false" aria-controls="instagram">
+                                <i class="icon-instagram instagram-color"></i> Instagram
+                            </a>
+                            <span class="social-status" id="instagram-indicator"><?php echo ($this->getOption('Instagram.active') ? '<i class="text-success icon-active"></i>' : '<i class="text-muted icon-inactive"></i>'); ?></span>
+                        </h4>
+                    </div>
+                    <div id="instagram" class="panel-collapse collapse" role="tabpanel" aria-labelledby="instagram-header">
+                        <div class="panel-body">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon" id="instagram-app-key"><i class="<?php echo ($this->getOption('Instagram.appKey') ? 'text-success icon-ok-circled' : 'icon-circle'); ?>"></i></span>
+                                <input type="text" class="form-control" name="appKey" value="<?php echo $this->getOption('Instagram.appKey'); ?>" data-group="Instagram" placeholder="<?php echo __('App Key', MYJIVE_KEY); ?>" aria-describedby="instagram-app-key" />
+                                <span class="input-group-addon myjive-help-addon" data-target="instagram-app-key-help">
+                                    <i class="icon-help-circled"></i>
+                                </span>
+                                <div class="myjive-meter myjive-meter-close"></div>
+                            </div>
+                            <div class="myjive-overflow">
+                                <div class="myjive-help-container" id="instagram-app-key-help">
+                                    <h3><?php echo __('App Key', MYJIVE_KEY); ?></h3>
+                                    <ol class="text-justify">
+                                        <li><?php echo sprintf(__('Visit the %s and enter your existing Instagram account information.', MYJIVE_KEY), '<a href="https://instagram.com/accounts/login/?next=%2Fdeveloper%2F">' . __('Instagram Developers Console', MYJIVE_KEY) . '</a>'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Select [Register Your Application]-- it will be near the middle of the page. You may have to accept terms to use Instagram\'s API. If you do, select [Register] again.', MYJIVE_KEY), 'i', 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('You should now be on the [Manage Clients] page. If you have none registered, select [Register New Client] just below your image in the navigation bar.', MYJIVE_KEY), 'i', 'i'); ?></li>
+                                        <li><?php echo __('Fill in the form on the next page. This will register your new client.', MYJIVE_KEY); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('After you finish registration, Instagram will return a page with both your [Client ID] and [Client Secret]. Copy and paste them into the corresponding boxes on this form.', MYJIVE_KEY), 'b', 'b'); ?></li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon" id="instagram-app-secret"><i class="<?php echo ($this->getOption('Instagram.appSecret') ? 'text-success icon-ok-circled' : 'icon-circle'); ?>"></i></span>
+                                <input type="text" class="form-control" name="appSecret" value="<?php echo $this->getOption('Instagram.appSecret'); ?>" data-group="Instagram" placeholder="<?php echo __('App Secret', MYJIVE_KEY); ?>" aria-describedby="instagram-app-secret" />
+                                <span class="input-group-addon myjive-help-addon" data-target="instagram-app-secret-help">
+                                    <i class="icon-help-circled"></i>
+                                </span>
+                                <div class="myjive-meter myjive-meter-close"></div>
+                            </div>
+                            <div class="myjive-overflow">
+                                <div class="myjive-help-container" id="instagram-app-secret-help">
+                                    <h3><?php echo __('App Secret', MYJIVE_KEY); ?></h3>
+                                    <ol class="text-justify">
+                                        <li><?php echo sprintf(__('Visit the %s and enter your existing Instagram account information.', MYJIVE_KEY), '<a href="https://instagram.com/accounts/login/?next=%2Fdeveloper%2F">' . __('Instagram Developers Console', MYJIVE_KEY) . '</a>'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Select [Register Your Application]-- it will be near the middle of the page. You may have to accept terms to use Instagram\'s API. If you do, select [Register] again.', MYJIVE_KEY), 'i', 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('You should now be on the [Manage Clients] page. If you have none registered, select [Register New Client] just below your image in the navigation bar.', MYJIVE_KEY), 'i', 'i'); ?></li>
+                                        <li><?php echo __('Fill in the form on the next page. This will register your new client.', MYJIVE_KEY); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('After you finish registration, Instagram will return a page with both your [Client ID] and [Client Secret]. Copy and paste them into the corresponding boxes on this form.', MYJIVE_KEY), 'b', 'b'); ?></li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon" id="instagram-access-token"><i class="<?php echo ($this->getOption('Instagram.accessToken') ? 'text-success icon-ok-circled' : 'icon-circle'); ?>"></i></span>
+                                <input type="text" class="form-control" name="accessToken" value="<?php echo $this->getOption('Instagram.accessToken'); ?>" data-group="Instagram" placeholder="<?php echo __('Access Token', MYJIVE_KEY); ?>" aria-describedby="instagram-access-token" />
+                                <span class="input-group-addon myjive-help-addon" data-target="instagram-access-token-help">
+                                    <i class="icon-help-circled"></i>
+                                </span>
+                                <div class="myjive-meter myjive-meter-close"></div>
+                            </div>
+                            <div class="myjive-overflow">
+                                <div class="myjive-help-container" id="instagram-access-token-help">
+                                    <h3><?php echo __('App Key', MYJIVE_KEY); ?></h3>
+                                    <ol class="text-justify">
+                                        <li><?php echo sprintf(__('Visit the %s Instagram Access Token generator.', MYJIVE_KEY), '<a href="http://instagram.pixelunion.net/">' . __('Pixel Union\'s', MYJIVE_KEY) . '</a>'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('If you are already logged in (you should be if you\'ve just created your [client ID] and [client secret], you will receive an authorization request from Instagram. We want to select [authorize.]', MYJIVE_KEY), 'i', 'i', 'i'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('You\'ll be taken back to Pixel Union\'s site. Your [access token] will be in a box in the middle of the page.', MYJIVE_KEY), 'b'); ?></li>
+                                        <li><?php echo $this->preparePhrase(__('Clicking anywhere in the box will select your entire [access token]. Copy it, then paste it into this form.', MYJIVE_KEY), 'b'); ?></li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="input-group input-group-lg">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-primary dropdown-toggle" id="instagram-query-type" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="<?php echo ($this->getOption('Instagram.query') ? 'text-success icon-' . $this->getOption('Instagram.queryType') : 'icon-menu'); ?>"></i></button>
+                                    <ul class="dropdown-menu" id="instagram-query-type-list">
+                                        <li><a href="#" data-query-type="search" aria-describedby="instagram-query-type"><i class="icon-search"></i> Search Query</a></li>
+                                        <li><a href="#" data-query-type="timeline" aria-describedby="instagram-query-type"><i class="icon-timeline"></i> User Timeline</a></li>
+                                    </ul>
+                                </div>
+                                <input type="text" class="form-control" name="query" id="instagram-query" value="<?php echo $this->getOption('Instagram.query'); ?>" data-group="Instagram" placeholder="<?php echo __('Fetch Feed By', MYJIVE_KEY); ?>" />
+                                <span class="input-group-addon myjive-help-addon" data-target="instagram-query-help">
+                                    <i class="icon-help-circled"></i>
+                                </span>
+                                <div class="myjive-meter myjive-meter-close"></div>
+                            </div>
+                            <div class="myjive-overflow">
+                                <div class="myjive-help-container" id="instagram-query-help">
+                                    <h3><?php echo __('Fetch Query', MYJIVE_KEY); ?></h3>
+                                    <p class="text-justify"><?php echo __('This box has two options. You may choose one or the other, but not both', MYJIVE_KEY); ?></p>
+                                    <ol class="text-justify">
+                                        <li><?php echo __('Search Query', MYJIVE_KEY); ?></li>
+                                        <ul>
+                                            <li><?php echo __(' - This is like typing into a Instagram search box', MYJIVE_KEY); ?></li>
+                                            <li><?php echo __(' - Consider using hashtags for more specific results', MYJIVE_KEY); ?></li>
+                                        </ul>
+                                        <li><?php echo __('User Timeline', MYJIVE_KEY); ?></li>
+                                        <ul>
+                                            <li><?php echo __(' - Enter the Instagram handle you want to return results for here <i>without</i> the @ symbol', MYJIVE_KEY); ?></li>
+                                            <li><?php echo __(' - Usually, this will be your Instagram handle. But we will never tell you what to do ;)', MYJIVE_KEY); ?></li>
+                                            <li><?php echo sprintf(__(' - Example: %s would actually just be Myjive', MYJIVE_KEY), '<a href="https://instagram.com/myjive/">@Myjive</a>'); ?></li>
+                                        </ul>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="btn-group btn-group-justified" role="group">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn <?php echo ($this->getOption('Instagram.active') ? 'btn-warning' : 'btn-success'); ?> toggle-status" data-group="Instagram" aria-describedby="instagram-indicator"><?php echo ($this->getOption('Instagram.active') ? '<i class="icon-inactive"></i> ' . __('Deactivate', MYJIVE_KEY) : '<i class="icon-active"></i> ' . __('Activate', MYJIVE_KEY)); ?></button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-info validate-source" data-source="Instagram"><i class="icon-arrows-cw"></i>  <?php echo __('Verify', MYJIVE_KEY); ?></button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-danger clear-cache" data-group="Instagram"><i class="icon-eraser"></i> <?php echo __('Clear Cache', MYJIVE_KEY); ?></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="setting-header">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#myjive-sections" href="#setting" aria-expanded="false" aria-controls="setting">
+                                <i class="icon-cog setting-color"></i> <?php echo __('Settings', MYJIVE_KEY); ?>
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="setting" class="panel-collapse collapse" role="tabpanel" aria-labelledby="setting-header">
+                        <div class="panel-body">
+                            <fieldset>
+                                <legend><?php echo __('Feed fetch settings', MYJIVE_KEY); ?></legend>
+                                <div class="input-group input-group-lg">
+                                    <?php $period = $this->getOption('Setting.cronPeriod', 'hourly'); ?>
+                                    <span class="input-group-addon" id="setting-cron-period"><i class="<?php echo ($period ? 'text-success icon-ok-circled' : 'icon-circle'); ?>"></i></span>
+                                    <select class="form-control" name="cronPeriod" data-group="Setting" aria-describedby="setting-cron-period" disabled>
+                                        <option value=""><?php echo __('Feed Fetch Period', MYJIVE_KEY); ?></option>
+                                        <option value="hourly"<?php echo ($period == 'hourly' ? ' selected' : ''); ?>><?php echo __('Hourly', MYJIVE_KEY); ?></option>
+                                        <option value="twicedaily"<?php echo ($period == 'twicedaily' ? ' selected' : ''); ?>><?php echo __('Twice Per Day', MYJIVE_KEY); ?></option>
+                                        <option value="daily"<?php echo ($period == 'daily' ? ' selected' : ''); ?>><?php echo __('Daily', MYJIVE_KEY); ?></option>
+                                    </select>
+                                    <span class="input-group-addon myjive-help-addon" data-target="setting-cron-period-help">
+                                        <i class="icon-help-circled"></i>
+                                    </span>
+                                    <div class="myjive-meter myjive-meter-close"></div>
+                                </div>
+                                <div class="myjive-overflow">
+                                    <div class="myjive-help-container" id="setting-cron-period-help">
+                                        <h3><?php echo __('Feed Fetch Period', MYJIVE_KEY); ?></h3>
+                                        <p class="text-justify"><?php echo __('This setting tells our nifty little program how often to go looking for new social media posts. It\'s default is hourly. At this moment, you cannot change this setting.', MYJIVE_KEY); ?></p>
+                                    </div>
+                                </div>                                    
+                            </fieldset>
+                            <?php do_action('myjive-settings-ui'); ?>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="extension-header">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#myjive-sections" href="#extension" aria-expanded="false" aria-controls="extension">
+                                <i class="icon-cubes text-info"></i> Extensions
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="extension" class="panel-collapse collapse" role="tabpanel" aria-labelledby="extension-header">
+                        <div class="panel-body">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <h3>Extension A</h3>
+                                            <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum ante at scelerisque egestas. Nulla nulla purus, posuere quis dolor vitae, efficitur aliquet justo. Donec nibh metus, dapibus at laoreet vitae, interdum in purus.</p>
+                                            <p class="text-right"><a href="#" class="btn-link btn-success">Purchase</a></p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h3>Extension B</h3>
+                                            <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum ante at scelerisque egestas. Nulla nulla purus, posuere quis dolor vitae, efficitur aliquet justo. Donec nibh metus, dapibus at laoreet vitae, interdum in purus.</p>
+                                            <p class="text-right"><a href="#" class="btn-link btn-success">Purchase</a></p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+</div>

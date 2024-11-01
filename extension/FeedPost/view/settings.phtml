@@ -1,0 +1,23 @@
+<fieldset>
+    <legend><?php echo __('Feed Post Type Settings', MYJIVE_KEY); ?></legend>
+    <div class="input-group input-group-lg">
+        <div class='myjive-meter myjive-meter-close'></div>
+        <span class="input-group-addon" id="setting-post-status"><i class="<?php echo ($this->getOption('Setting.postStatus') ? 'text-success icon-ok-circled' : 'icon-circle'); ?>"></i></span>
+        <?php $status = $this->getOption('Setting.postStatus'); ?>
+        <select class="form-control" name="postStatus" data-group="Setting" aria-describedby="setting-post-status">
+            <option value=""><?php echo __('Default Feed Status', MYJIVE_KEY); ?></option>
+            <?php foreach (get_post_statuses() as $key => $value) { ?>
+                <option value="<?php echo $key; ?>"<?php echo ($key == $status ? ' selected' : ''); ?>><?php echo $value; ?></option>
+            <?php } ?>
+        </select>
+        <span class="input-group-addon myjive-help-addon" data-target="setting-post-status-help">
+            <i class="icon-help-circled"></i>
+        </span>
+    </div>
+    <div class="myjive-overflow">
+        <div class="myjive-help-container" id="setting-post-status-help">
+            <h3><?php echo __('Default Feed Status', MYJIVE_KEY); ?></h3>
+            <p class="text-justify"><?php echo __('Use this setting to change the status of the posts that this plugin generates.', MYJIVE_KEY); ?></p>
+        </div>
+    </div>
+</fieldset>
